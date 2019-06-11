@@ -23,8 +23,8 @@ jobs:
       - run:
           name: code-coverage
           command: './node_modules/.bin/nyc report --reporter=text-lcov'
-      - codecov/upload:
-          file: { { coverage_report_filepath } }
+      #- codecov/upload:
+      #    file: { { coverage_report_filepath } }
       - store_artifacts: # special step to save test results as as artifact
           # Upload test summary for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
           path: test-results.xml
@@ -42,7 +42,7 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints:
-            - ''
+            - '8f:d2:b9:26:ef:0f:ee:5f:79:bc:c6:8e:1c:97:be:40'
       - run:
           name: npm install
           command: npm ci
