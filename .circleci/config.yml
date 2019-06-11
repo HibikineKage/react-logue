@@ -1,9 +1,4 @@
 version: 2
-workflows:
-  version: 2
-  build_and_test:
-    jobs:
-      - build
 jobs:
   build:
     docker:
@@ -40,3 +35,33 @@ jobs:
       - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
           path: test-results.xml
       # See https://circleci.com/docs/2.0/deployment-integrations/ for deploy examples
+  build_deploy:
+    docker:
+      - image: node:10
+    steps:
+      - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - ''
+      - run:
+          name: npm install
+          command: npm ci
+      - run:
+          name: build
+          command: npm run build
+      - run:
+          name: Deploy
+          command: |
+            git config --global user.name "Circle CI"
+            git config --global user.email "<>"
+            npm run deploy
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - build_deploy:
+          filters:
+            branches:
+              only:
+                - master
