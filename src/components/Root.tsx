@@ -1,10 +1,13 @@
 import * as React from 'react';
-import storeCreator from '../store';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import storeCreator from '../store';
 
-const store = storeCreator();
+const { store, persistor } = storeCreator();
 export default () => (
   <div>
-    <Provider store={store}>hoge</Provider>
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>hoge</PersistGate>
+    </Provider>
   </div>
 );
