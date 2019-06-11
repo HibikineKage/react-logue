@@ -22,9 +22,7 @@ jobs:
           command: npm run test-ci
       - run:
           name: code-coverage
-          command:
-            - 'npm i -D codecov'
-            - './node_modules/.bin/codecov'
+          command: 'npm i -D codecov && ./node_modules/.bin/codecov'
       #- codecov/upload:
       #    file: { { coverage_report_filepath } }
       - store_artifacts: # special step to save test results as as artifact
@@ -44,7 +42,7 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints:
-            - '8f:d2:b9:26:ef:0f:ee:5f:79:bc:c6:8e:1c:97:be:40'
+            - '3e:a4:42:43:6f:ae:12:37:7f:df:a6:ec:de:46:d2:ce'
       - run:
           name: npm install
           command: npm ci
