@@ -6,7 +6,7 @@ export const setMap = (data: MapData): SetMapAction => ({
   payload: { data }
 });
 type SetMapAction = Action<typeof SET_MAP> & { payload: { data: MapData } };
-type MapData = { width: number; cells: Cell[] };
+export type MapData = { width: number; cells: Cell[] };
 type Cell = { type: CellType };
 export enum CellType {
   Wall,
