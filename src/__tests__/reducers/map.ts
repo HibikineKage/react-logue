@@ -14,6 +14,16 @@ describe('map reducer', () => {
           }
         }
       })
-    ).toEqual({ current: [] });
+    ).toEqual({
+      current: {
+        width: 2,
+        cells: [
+          { type: CellType.Ground },
+          { type: CellType.Ground },
+          { type: CellType.Ground },
+          { type: CellType.Ground }
+        ]
+      }
+    });
   });
 });
